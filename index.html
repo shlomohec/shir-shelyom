@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>שיר של יום בחול המועד</title>
+<meta name="description" content="מחשבון שיר של יום לפי התאריך העברי, היום בשבוע ולוח ארץ ישראל או חוץ לארץ.">
+<meta name="theme-color" content="#f4efec">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="שיר של יום">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="שיר של יום בחול המועד">
+<meta property="og:description" content="מחשבון שיר של יום לפי התאריך העברי, היום בשבוע ולוח ארץ ישראל או חוץ לארץ.">
+<meta property="og:image" content="https://shlomo-hecht.com/shir-shelyom/icons/og.png">
+<style>
+:root { --page:#f4efec; --ink:#1f1b16; --ink2:#6b6258; --hairline:#ddd3c8; --teal:#14665e; }
+* { box-sizing:border-box; }
+html,body { margin:0; min-height:100%; }
+body { background:var(--page); color:var(--ink); font-family:'Noto Sans Hebrew','Segoe UI',system-ui,sans-serif; line-height:1.5; }
+.wrap { max-width:720px; margin:0 auto; padding:28px 20px 48px; }
+h1 { font-size:30px; margin:0 0 6px; line-height:1.25; }
+.intro { color:var(--ink2); margin:0 0 18px; font-size:16px; }
+.portrait { display:flex; align-items:center; gap:14px; margin:8px 0 26px; }
+.portrait img { width:96px; height:118px; border-radius:8px; object-fit:cover; object-position:center 25%; }
+.portrait figcaption { max-width:260px; font-size:12px; line-height:1.5; color:var(--ink2); }
+h2 { font-size:19px; margin:30px 0 4px; }
+.dateLine { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:14px; }
+.dateLine label { font-weight:600; }
+.dateLine select,.dateLine button { min-height:44px; border:1px solid var(--hairline); border-radius:8px; background:#fff; padding:7px 12px; color:var(--ink); font:inherit; }
+.dateLine button { cursor:pointer; }
+.locationPick { display:flex; gap:8px; margin:16px 0; flex-wrap:wrap; }
+.locationPick button { min-height:44px; padding:8px 16px; font:inherit; color:var(--ink); border:1px solid var(--hairline); background:#fff; border-radius:8px; cursor:pointer; }
+.locationPick button[aria-pressed="true"] { border-color:var(--teal); font-weight:600; box-shadow:inset 0 0 0 1px var(--teal); }
+.dateLabel { font-size:17px; color:var(--ink2); margin:14px 0 0; }
+.dateLabel.prominent { font-size:20px; font-weight:600; color:var(--ink); margin:8px 0 0; }
+.answer { min-height:115px; display:flex; align-items:baseline; flex-wrap:wrap; gap:10px; padding:20px 0 18px; border-bottom:1px solid var(--hairline); }
+.answer strong { font-size:48px; line-height:1; font-weight:600; color:var(--teal); }
+.answer .psalmTitle { font-size:20px; }
+.answerKicker { color:var(--ink2); font-size:16px; }
+.answer.greeting { align-items:flex-start; justify-content:center; flex-direction:column; gap:12px; font-size:36px; font-weight:600; color:var(--teal); }
+.answer.greeting small { color:var(--ink2); font-size:16px; font-weight:400; }
+.answer.muted { align-items:center; color:var(--ink2); font-size:19px; }
+.reason { color:var(--ink2); }
+.notes { max-width:72ch; }
+.callout { border:1px solid var(--hairline); border-radius:10px; background:#faf7f3; padding:14px 16px; margin-top:14px; }
+.callout strong { display:block; margin-bottom:6px; }
+.callout p { margin:0; color:var(--ink2); }
+.source { margin-top:16px; font-size:15px; }
+.source a { color:var(--teal); }
+.installRow { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
+.installRow button { min-height:44px; padding:8px 20px; font:inherit; font-weight:600; color:#fff; background:var(--teal); border:0; border-radius:8px; cursor:pointer; }
+.installRow .iosHint { color:var(--ink2); font-size:14px; }
+.psalmText { margin-top:6px; font-family:'Noto Serif Hebrew',serif; font-size:20px; line-height:1.9; }
+.psalmText .verse { display:block; }
+.psalmText .vnum { color:var(--teal); font-weight:600; font-size:15px; margin-left:8px; font-family:'Noto Sans Hebrew',sans-serif; }
+.psalmHead { color:var(--ink2); font-size:15px; margin:0 0 8px; }
+footer { margin-top:36px; padding-top:14px; border-top:1px solid var(--hairline); color:var(--ink2); font-size:13px; }
+@media (max-width:600px) {
+  h1 { font-size:26px; }
+  .dateLine label { width:100%; }
+  .dateLine select { flex:1 1 auto; max-width:100%; }
+  .dateLine button { font-size:13px; }
+  .answer strong { font-size:42px; }
+  .answer .psalmTitle { font-size:18px; }
+  .answer.greeting { font-size:30px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>שיר של יום בחול המועד</h1>
+  <p class="intro">בחרו תאריך עברי; המחשבון בוחר את הפרק על פי היום בשבוע והטבלה.</p>
+  <figure class="portrait"><img src="gra.jpg" alt="דיוקן המיוחס לגר״א"><figcaption>דיוקן המיוחס לגר״א, לא דיוקן מאומת. מקור: Wikimedia Commons.</figcaption></figure>
+
+  <h2>התאריך</h2>
+  <div class="dateLine">
+    <label id="pickLabel">תאריך עברי</label>
+    <select id="hDay" aria-labelledby="pickLabel" aria-label="יום בחודש"></select>
+    <select id="hMonth" aria-label="חודש"></select>
+    <select id="hYear" aria-label="שנה"></select>
+    <button type="button" id="prevDay" aria-label="היום הקודם">יום קודם</button>
+    <button type="button" id="nextDay" aria-label="היום הבא">יום הבא</button>
+    <button type="button" id="todayBtn">היום</button>
+  </div>
+  <div class="locationPick" aria-label="מנהג מקום">
+    <button type="button" id="ilBtn" aria-pressed="true">ארץ ישראל</button>
+    <button type="button" id="diasBtn" aria-pressed="false">חוץ לארץ</button>
+  </div>
+  <h2>התוצאה</h2>
+  <p class="dateLabel prominent" id="dateLabel"></p>
+  <div class="answer" id="answerBox" role="status"></div>
+  <p class="reason" id="reasonLine"></p>
+  <div id="psalmSection" hidden>
+    <h2>המזמור המלא</h2>
+    <p class="psalmHead" id="psalmHead"></p>
+    <div class="psalmText" id="psalmText"></div>
+  </div>
+
+  <div class="installRow" id="installRow" hidden>
+    <button type="button" id="installBtn">התקנה</button>
+    <span class="iosHint" id="iosHint" hidden>באייפון: שיתוף &larr; הוסף למסך הבית</span>
+  </div>
+
+  <h2>איך זה מחושב</h2>
+  <p class="notes">בחול המועד פסח וסוכות נבחרת השורה לפי היום בחג והיום בשבוע; ביום חול רגיל לפי משנה תמיד ז׳:ד׳. בראש חודש מוצג פרק ק״ד. בשבת מוצג רק ״שבת שלום!״; ביום טוב מוצגת ברכה וגם מספר הפרק לשואלים מראש. בחרו בין לוח ארץ ישראל ללוח חוץ לארץ, שבו היום השני של יום טוב אינו מציג פרק.</p>
+  <div class="callout"><strong>לידיעתכם</strong><p>ברירת המחדל היא היום לפי לוח השנה בישראל. אחרי השקיעה היום העברי כבר השתנה; במקרה כזה בחרו ידנית את התאריך של היום הבא. ימי חול רגילים חושבו לפי משנה תמיד ז׳:ד׳, שאינה חלק מהטבלה. בחוץ לארץ ימי חול המועד נשארים לפי מספר היום המקורי בחג, לאחר דילוג על יום טוב שני.</p></div>
+  <p class="source"><a href="https://www.daat.ac.il/encyclopedia/images/shirshelyom.pdf">הטבלה המקורית: שיר של יום לפי מנהג הגר״א (PDF)</a> · <a href="https://commons.wikimedia.org/wiki/File:Vilna_Gaon_authentic_portrait.JPG">מקור התמונה</a> · <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%A0%D7%94_%D7%AA%D7%9E%D7%99%D7%93_%D7%96_%D7%93">שיר של יום בשאר ימי השבוע: משנה תמיד ז׳:ד׳</a></p>
+
+  <footer>מבוסס על הטבלה; זה אינו אימות עצמאי לייחוס המנהג לגר״א. טקסט התהלים: מקרא על פי המסורה, באדיבות Sefaria וויקיטקסט (CC BY-SA). · גרסה ד׳</footer>
+</div>
+<script src="tehillim.js"></script>
+<script src="app.js"></script>
+<script>
+(function(){
+  function gim(n){ const t=['','י','כ','ל','מ','נ','ס','ע','פ','צ']; const u=['','א','ב','ג','ד','ה','ו','ז','ח','ט'];
+    if(n>=100) return 'ק'+gim(n-100); if(n===15) return 'טו'; if(n===16) return 'טז';
+    const base=t[Math.floor(n/10)]+u[n%10];
+    return base.length>1 ? base.slice(0,-1)+'\u05F4'+base.slice(-1) : base+'\u05F3'; }
+  let date = todayJerusalem();
+  let diaspora = false;
+  const selD=document.getElementById('hDay'), selM=document.getElementById('hMonth'), selY=document.getElementById('hYear'),
+        dateLabel=document.getElementById('dateLabel'),
+        box=document.getElementById('answerBox'), reason=document.getElementById('reasonLine'),
+        ilBtn=document.getElementById('ilBtn'), diasBtn=document.getElementById('diasBtn');
+  let curH=todayHebrew() || {y:5787,mIdx:0,d:1};
+  function fillYears(){
+    selY.textContent='';
+    for(let y=curH.y-12;y<=curH.y+12;y++){
+      const o=document.createElement('option'); o.value=y; o.textContent=hebrewYear(y); selY.appendChild(o);
+    }
+    selY.value=curH.y;
+  }
+  function fillMonths(){
+    selM.textContent='';
+    hMonthNames(curH.y).forEach((name,i)=>{
+      const o=document.createElement('option'); o.value=i; o.textContent=name; selM.appendChild(o);
+    });
+    if(curH.mIdx===6&&!hLeap(curH.y)) curH.mIdx=5; /* אדר ב׳ -> אדר בשנה פשוטה */
+    if(curH.mIdx>=selM.options.length) curH.mIdx=selM.options.length-1;
+    selM.value=curH.mIdx;
+  }
+  function fillDays(){
+    const n=hMonthLengths(curH.y)[curH.mIdx];
+    selD.textContent='';
+    for(let d=1;d<=n;d++){
+      const o=document.createElement('option'); o.value=d; o.textContent=numerals[d]||String(d); selD.appendChild(o);
+    }
+    curH.d=Math.min(curH.d,n);
+    selD.value=curH.d;
+  }
+  function syncPickers(){
+    fillYears(); fillMonths(); fillDays();
+  }
+  function render(){
+    syncPickers();
+    ilBtn.setAttribute('aria-pressed', String(!diaspora));
+    diasBtn.setAttribute('aria-pressed', String(diaspora));
+    const derived=hebrewToISO(curH.y,curH.mIdx,curH.d);
+    if(derived) date=derived;
+    const result=answer(date,diaspora);
+    const found=result && result.psalm ? psalms[result.psalm] : undefined;
+    dateLabel.textContent = result ? result.day : '';
+    box.className='answer';
+    box.textContent='';
+    if (result && result.greeting){
+      box.classList.add('greeting');
+      box.textContent=result.greeting;
+      if (found){ const s=document.createElement('small'); s.textContent='פרק '+found.number+' · לשואלים מראש'; box.appendChild(s); }
+    } else if (found){
+      const k=document.createElement('span'); k.className='answerKicker'; k.textContent='תהילים';
+      const st=document.createElement('strong'); st.textContent=found.number;
+      const t=document.createElement('span'); t.className='psalmTitle'; t.textContent=found.title;
+      box.append(k,st,t);
+    } else {
+      box.classList.add('muted');
+      box.textContent=(result && result.explanation) || 'בחרו תאריך תקין.';
+    }
+    reason.textContent = (result && result.psalm) ? result.explanation : '';
+    const sec=document.getElementById('psalmSection'), head=document.getElementById('psalmHead'), txt=document.getElementById('psalmText');
+    txt.textContent='';
+    if (found && typeof psalmTexts!=='undefined' && psalmTexts[result.psalm]) {
+      const entry=psalmTexts[result.psalm];
+      head.textContent = entry.from>1
+        ? 'פרק '+gim(entry.chapter)+', פסוקים '+gim(entry.from)+' - '+gim(entry.from+entry.verses.length-1)
+        : 'פרק '+gim(entry.chapter);
+      entry.verses.forEach((v,i)=>{
+        const span=document.createElement('span'); span.className='verse';
+        const num=document.createElement('span'); num.className='vnum'; num.textContent=gim(entry.from+i);
+        span.append(num, document.createTextNode(v));
+        txt.appendChild(span);
+      });
+      sec.hidden=false;
+    } else { sec.hidden=true; }
+  }
+  selY.addEventListener('change', ()=>{ curH.y=Number(selY.value); render(); });
+  selM.addEventListener('change', ()=>{ curH.mIdx=Number(selM.value); render(); });
+  selD.addEventListener('change', ()=>{ curH.d=Number(selD.value); render(); });
+  function setFromISO(iso){
+    const p=Object.fromEntries(hebrew.formatToParts(new Date(iso+'T12:00:00+03:00')).filter(x=>['day','month','year'].includes(x.type)).map(x=>[x.type,x.value]));
+    const y=Number(p.year), d=Number(p.day);
+    const leapEn=['Tishri','Heshvan','Kislev','Tevet','Shevat','Adar I','Adar II','Nisan','Iyar','Sivan','Tamuz','Av','Elul'];
+    const plainEn=['Tishri','Heshvan','Kislev','Tevet','Shevat','Adar','Nisan','Iyar','Sivan','Tamuz','Av','Elul'];
+    const mi=(hLeap(y)?leapEn:plainEn).indexOf(p.month);
+    if(mi<0||!d) return;
+    curH={y:y,mIdx:mi,d:d};
+    date=iso;
+  }
+  document.getElementById('prevDay').addEventListener('click', ()=>{ setFromISO(shift(date,-1)); render(); });
+  document.getElementById('nextDay').addEventListener('click', ()=>{ setFromISO(shift(date,1)); render(); });
+  document.getElementById('todayBtn').addEventListener('click', ()=>{ setFromISO(todayJerusalem()); render(); });
+  ilBtn.addEventListener('click', ()=>{ diaspora=false; render(); });
+  diasBtn.addEventListener('click', ()=>{ diaspora=true; render(); });
+  render();
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+
+  const installed = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+  const row=document.getElementById('installRow'), btn=document.getElementById('installBtn'), ios=document.getElementById('iosHint');
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  let deferred=null;
+  window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); deferred=e; if(!installed){ row.hidden=false; btn.hidden=false; } });
+  if (isIOS && !installed && !navigator.userAgent.includes('CriOS')) { row.hidden=false; btn.hidden=true; ios.hidden=false; }
+  btn.addEventListener('click', async ()=>{ if(!deferred) return; deferred.prompt(); await deferred.userChoice; deferred=null; row.hidden=true; });
+  window.addEventListener('appinstalled', ()=>{ row.hidden=true; });
+})();
+</script>
+</body>
+</html>
